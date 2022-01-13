@@ -1,0 +1,9 @@
+# py
+venv
+# db
+*.db
+*.sqlite3
+pg_data
+# doc
+Dockerfile
+docker-compose.yml
