@@ -9,6 +9,7 @@ license = "WTFPL"
 python = "^3.9"
 Django = "4.0.1"
 django-crispy-forms = "1.13.0"
+django-prometheus = "2.2.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

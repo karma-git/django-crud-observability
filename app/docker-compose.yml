@@ -1,5 +1,8 @@
 version: "3.9"
 
+volumes:
+  app_data: {}
+
 services:
 
   postgres:
@@ -31,3 +34,23 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+  
+  prometheus:
+    image: prom/prometheus:v2.21.0
+    volumes:
+      - ./utils/prometheus/:/etc/prometheus/
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+    ports:
+      - 9090:9090
+
+  promtail:
+    image: grafana/promtail:1.6.1
+    volumes:
+      - app_data:/var/log
+
+  grafana:
+    image: grafana/grafana:7.3.6
+    ports:
+      - 3000:3000
